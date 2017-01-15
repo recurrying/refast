@@ -1,0 +1,27 @@
+{
+  "name": "demo",
+  "options": {
+    "type": "uxcore",
+    "template": "https://github.com/nowa-webpack/template-uxcore/archive/daily/2.0.1.zip",
+    "npm": "tnpm",
+    "vars": {
+      "__LOCAL__": true
+    },
+    "buildvars": {
+      "__LOCAL__": [false]
+    },
+    "pages": false,
+    "externals": {
+      "natty-fetch": "var nattyFetch",
+      "react": "var React",
+      "react-dom": "var ReactDOM",
+      "react-router": "var ReactRouter",
+      "Promise": "var Promise",
+      "reflux": "var Reflux",
+      "lodash": "var _"
+    },
+    "mockapi": {
+      "/mock/query/getSomeInfo.json": "mock/query/getSomeInfo.js"
+    }
+  }
+}

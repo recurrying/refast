@@ -1,0 +1,58 @@
+body {
+  font-size: 14px;
+  color: #333;
+  background-color: #f7f7f7;
+}
+
+/*滚动条出现时不跳动*/
+/*详见http://www.zhangxinxu.com/wordpress/2015/01/css-page-scrollbar-toggle-center-no-jumping/*/
+
+html {
+  overflow-y: scroll;
+}
+
+:root {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+:root body {
+  position: absolute;
+}
+
+body {
+  width: 100vw;
+  overflow: hidden;
+}
+
+
+/*路由切换的样式*/
+.route-enter {
+  opacity: 0.01;
+  transition: opacity .5s ease-in;
+}
+
+.route-enter.route-enter-active {
+  opacity: 1;
+}
+
+.route-leave {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.route-leave.route-leave-active {
+  opacity: 0;
+}
+
+.kuma-container {
+  background: #fff;
+}
+
+.PT20 {
+  padding-top: 20px;
+}
+
+.PB20 {
+  padding-bottom: 20px;
+}
