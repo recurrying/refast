@@ -5,7 +5,7 @@
  */
 import React, { PropTypes } from 'react';
 import isArray from 'isarray';
-import deepcopy from 'deepequal';
+import deepcopy from 'deepcopy';
 import assign from 'object-assign';
 import { context } from './utils';
 
