@@ -4,9 +4,10 @@
  * Created by ex90rts on 11/12/2016.
  */
 import React, { PropTypes } from 'react';
-import { context } from './utils';
 import isArray from 'isarray';
+import deepcopy from 'deepequal';
 import assign from 'object-assign';
+import { context } from './utils';
 
 export default class Component extends React.Component {
   static childContextTypes = {
@@ -17,7 +18,7 @@ export default class Component extends React.Component {
     this.logic = logic;
     this.state = {};
     if (typeof logic.defaults === 'function') {
-      this.execute('defaults');
+      this.state = logic.defaults(props) || {};
     }
   }
 
@@ -30,12 +31,9 @@ export default class Component extends React.Component {
     const t = this;
     let actions = params.shift();
     const ctx = assign({}, context, {
-      /*setState: (nextState) => {
-        t.setState(nextState=>nextState);
-      },*/
       setState: t.setState.bind(t),
-      getState() { return t.state },
-      getProps() { return t.props },
+      getState() { return deepcopy(t.state); },
+      getProps() { return deepcopy(t.props); },
     });
 
     if (!isArray(actions)) {
@@ -44,10 +42,9 @@ export default class Component extends React.Component {
 
     (function execAction(args) {
       if (actions.length) {
-
         const action = actions.shift();
 
-        // 如果不存在 logic中不存在action就报错退出
+        // 如果logic中不存在action就报错退出
         if (t.logic[action]) {
           const ret = t.logic[action].apply(null, [ctx, ...params].concat([args]));
           if (ret && typeof ret.then === 'function') {
@@ -56,16 +53,14 @@ export default class Component extends React.Component {
                 execAction(data);
               }
             });
-          } else {
-            if (ret !== false) {
-              execAction(ret);
-            }
+          } else if (ret !== false) {
+            execAction(ret);
           }
         } else {
           throw Error(`action ${action} is not defined`);
         }
       }
-    })();
+    }());
   }
 
   renderPage() {

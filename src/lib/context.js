@@ -5,14 +5,14 @@ const isMobile = !!ua.match(/mobile/i) || 'orientation' in win;
 const isPC = !isMobile;
 
 const supportTouch = 'ontouchstart' in window;
-const support3D = ('WebKitCSSMatrix' in window && 'm11' in new WebKitCSSMatrix());
+const support3D = ('WebKitCSSMatrix' in window && 'm11' in new window.WebKitCSSMatrix());
 const supportHairline = (() => {
   let support = false;
   if (win.devicePixelRatio && devicePixelRatio >= 2) {
     const testElem = doc.createElement('div');
     testElem.style.border = '.5px solid transparent';
     doc.body.appendChild(testElem);
-    if (testElem.offsetHeight == 1) {
+    if (testElem.offsetHeight === 1) {
       support = true;
     }
     doc.body.removeChild(testElem);
@@ -28,6 +28,4 @@ export default {
     support3D,
     supportHairline,
   },
-  plugin: {},
-  fn: {},
 };

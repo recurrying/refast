@@ -74,15 +74,15 @@ Logic是一些方法的集合。这些函数的返回值会用于更新页面组
 
 ```javascript
   {
+    // fn 需要读者自己完善
     // 挂载通用方法
     // 比如Dialog、Message
     // 如果是ReactRouter还会传递router，location，history
     fn: ...,
     // 获取组件的状态（深拷贝）
-    getState() { return cloneDeep(t.state); },
-    // 获取组件的props
-    getProps() { return cloneDeep(t.props); },
-    // 返回组件实例
+    getState() { return deepcopy(t.state); },
+    // 获取组件的props（深拷贝）
+    getProps() { return deepcopy(t.props); },
     setState: t.setState.bind(t),
   }
 ```

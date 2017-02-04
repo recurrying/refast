@@ -4,7 +4,6 @@
  * Created by ex90rts on 12/12/2016.
  */
 import { Component, PropTypes } from 'react';
-import EmptyData from 'uxcore-empty-data';
 import deepequal from 'deepequal';
 
 export default class LogicRender extends Component {
@@ -28,25 +27,26 @@ export default class LogicRender extends Component {
     loading: false,
     show: true,
     children: [],
+    Loading: 'div',
+    Empty: 'div',
   }
 
   static contextTypes = {
     host: PropTypes.any,
   }
   componentDidMount() {
-    this.executeAction('componentDidMount');
+    this.executeAction();
   }
 
   componentWillReceiveProps(nextProps) {
     if (!deepequal(nextProps.awareOf, this.props.awareOf)) {
-      this.executeAction('componentWillReceiveProps');
+      this.executeAction();
     }
   }
 
-  executeAction(lifeCycle) {
+  executeAction() {
     const { action, awareOf } = this.props;
     if (action) {
-      console.log(`logic render ${lifeCycle} with action ${this.props.action}`);
       const host = this.context.host;
       host.execute({ action, awareOf });
     }
@@ -54,19 +54,29 @@ export default class LogicRender extends Component {
 
   render() {
     let content = null;
-    const { show, loading, empty, children, className, loadingProps, emptyProps } = this.props;
-    const cls = `${className || ''} ${loading ? 'if-loading' : ''}  ${empty ? 'if-empty' : ''}`;
-    if(!show) {
+    const {
+      show,
+      loading,
+      empty,
+      children,
+      className,
+      loadingProps,
+      emptyProps,
+      Loading,
+      Empty,
+    } = this.props;
+    const cls = className || '';
+
+    if (!show) {
       content = null;
-    }
-    else if (loading) {
+    } else if (loading) {
       content = (
-        <div className={cls} {...loadingProps} >
-          <div className="kuma-loading" style={{ margin: "10px auto" }}></div>
-        </div >
+        <Loading className={`${cls} noflux-loading`} {...loadingProps} />
       );
     } else if (empty) {
-      content = <EmptyData className={cls} type="large" {...emptyProps} />;
+      content = (
+        <Empty className={`${cls} noflux-empty`} {...emptyProps} />
+      );
     } else {
       content = (
         <div className={cls}>{children}</div>

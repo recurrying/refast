@@ -2,14 +2,13 @@ import { assign } from 'lodash';
 import DB from '../../app/db';
 
 export default {
-  defaults({ env, setState }) {
-    console.log('env:', env);
-    setState({
+  defaults(props) {
+    return {
       content: {},
       error: false,
       workNo: '',
       loading: false,
-    });
+    };
   },
   updateState({ setState }, data) {
     setState(assign({}, data, { loading: true, empty: true }));
@@ -23,11 +22,13 @@ export default {
     console.log('fromExec', fromExec, 'fromUpdateState', fromUpdateState);
     const users = await DB.SomeModuleAPI.getSomeInfo(fromExec);
     const empty = !(users.data && users.data.length);
-    setState(assign({}, users, { loading: false, empty }));
+
     if (empty) {
       message.info(`${fromExec.workNo}查无数据！`);
     } else {
       message.success(`${fromExec.workNo}请求成功！`);
     }
+
+    setState(assign({}, users, { loading: false, empty }));
   },
 };

@@ -5,5 +5,5 @@ import { setup } from './lib/utils';
 export default {
   Component,
   LogicRender,
-  setup
-}
+  setup,
+};
