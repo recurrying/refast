@@ -47,7 +47,9 @@ export default class LogicRender extends Component {
   executeAction() {
     const host = this.context.host;
     const { action, awareOf } = this.props;
-    host.execute(action, awareOf);
+    if (action) {
+      host.execute(action, awareOf);
+    }
   }
 
   render() {
