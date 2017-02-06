@@ -2,11 +2,11 @@
 
 ---
 
-不借助flux思想, 通过简单抽离state管理为纯函数方式进行页面数据管理
+通过简单抽离state的方式进行页面数据管理
 
 ## 设计思路
 
-与我们目前的Reflux方案的写法对比，no-flux将Action的概念直接融合到了View里。Action自身退化， 
+与reflux对比，no-flux将Action的概念直接融合到了View里。Action自身退化， 
 只剩下一个名称。执行的具体逻辑合并Logic的同名函数中。至于Action的触发时机则交给View决定。你
 很少需要直接调Action,因为你只要在需要设置事件 的地方用下面的“行为组件”来调用Action。
 
@@ -86,3 +86,7 @@ Logic是一些方法的集合。这些函数的返回值会用于更新页面组
     setState: t.setState.bind(t),
   }
 ```
+
+## 具体示例
+
+示例在这里 [https://github.com/fengsx/no-flux-demo](https://github.com/fengsx/no-flux-demo)
