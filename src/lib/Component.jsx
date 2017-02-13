@@ -1,10 +1,6 @@
-/**
- * Component功能：页面级Component的模板类，同时负责绑定logic、初始化state、执行logic方法并setState
- *
- * Created by ex90rts on 11/12/2016.
- */
 import React, { PropTypes } from 'react';
 import isArray from 'isarray';
+import isPlainObject from 'is-plain-object';
 import deepcopy from 'deepcopy';
 import assign from 'object-assign';
 import { context } from './utils';
@@ -15,16 +11,30 @@ export default class Component extends React.Component {
   }
   constructor(props, logic) {
     super(props);
-    this.logic = logic;
-    this.state = {};
-    if (typeof logic.defaults === 'function') {
-      this.state = logic.defaults(props) || {};
+    if (isPlainObject(logic)) {
+      this.logic = logic;
+      this.state = {};
+      if (typeof logic.defaults === 'function') {
+        this.state = logic.defaults(props) || {};
+      }
+    } else {
+      throw Error('related Logic haven\'t given!');
     }
+
+    this.bind = this.bind.bind(this);
+    this.execute = this.execute.bind(this);
+    this.renderPage = this.renderPage.bind(this);
   }
 
   // 将宿主对象传给所有的LogicRender，供其调用logic方法
   getChildContext() {
     return { host: this };
+  }
+
+  bind(...params) {
+    return () => {
+      this.execute.apply(this, params);
+    };
   }
 
   execute(...params) {

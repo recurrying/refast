@@ -29,13 +29,13 @@ this.execute('update', data);
 // logic.js
 export default { 
   ...
-  update(context, data) {
-    context.setState(data);
+  update(ctx, data) {
+    ctx.setState(data);
   },
 }
 ```
 
-action被execute调用后，no-flux会把它的第一个参数设为context。execute时传给action的参数会被依次放在context之后。context一般包含有以下几个方法：
+action被execute调用后，no-flux会把它的第一个参数设为ctx。execute时传给action的参数会被依次放在ctx之后。ctx一般包含有以下几个方法：
 - setState 设置组件的 state, 用法与组件的 setState 相同
 - getState 获取组件当前的 state
 - getProps 获取组件当前的 props
@@ -51,7 +51,7 @@ this.execute(['update', 'search'], data);
 // logic.js
 export default { 
   ...
-  update(context, data) {
+  update(ctx, data) {
     // 如果返回 false，则终止此次 execute, 
     // 下面的 search 方法 不会被调用
     // 如果返回的是一个对象 obj
@@ -59,8 +59,8 @@ export default {
     return obj;
   },
 
-  search(context, data, obj) {
-    context.setState(data);
+  search(ctx, data, obj) {
+    ctx.setState(data);
   },
 }
 ```
@@ -72,11 +72,11 @@ export default {
 export default {
   ...
   // no-flux 通过 async/await 的方式管理异步请求
-  await search(context, data) {
+  await search(ctx, data) {
     // 可以通过 natty-fetch/window.fetch/$.ajax 等各种方式做异步请求的管理
     const state = await DB.User.search(data);
     ...
-    context.setState(state);
+    ctx.setState(state);
   }
 }
 ```
@@ -87,7 +87,7 @@ export default {
 // logic.js
 export default {
   ...
-  await search(context, data) {
+  await search(ctx, data) {
     let state = {};
     try {
       state = await DB.User.search(data);
@@ -95,7 +95,7 @@ export default {
       state = { hasError: true };
     }
     ...
-    context.setState(state);
+    ctx.setState(state);
   }
 }
 ```
@@ -105,19 +105,40 @@ export default {
 // logic.js
 export default {
   ...
-  await search(context, data) {
+  await search(ctx, data) {
     let state =  await DB.User.search(data).catch(() => {
       ...
     });
     ...
-    context.setState(state);
+    ctx.setState(state);
   }
 }
 ```
+5、this.bind
 
-5、扩展context
+no-flux提供了this.execute的一个简捷方法，this.bind，它相当于：
 
-用户可以通过no-flux提供的setup进行很轻松的扩展context。
+```javascript
+bind(...params) {
+  return () => {
+    this.execute.apply(this, params);
+  };
+}
+```
+
+假定，给一个button绑定事件：
+
+```javascript
+// onClick需要传递一个函数
+<button onClick={()=>this.execute('click')}>提交</button>
+// 或者这么传
+<button onClick={this.execute.bind(this, 'click')}>提交</button>
+// 可以直接省略成这样
+<button onClick={this.bind('click')}>提交</button>
+```
+6、扩展ctx
+
+通过no-flux提供的setup可以很轻松地扩展ctx。
 
 ```javascript
 import { setup } from 'no-flux';
@@ -137,11 +158,11 @@ setup('fn', {
 // logic.js
 export default { 
   ...
-  search(context, data) {
+  search(ctx, data) {
     ...
-    context.fn.message.info('这里是自定义的message');
+    ctx.fn.message.info('这里是自定义的message');
     ...
-    context.fn.DB.User.search(data).then(...).catch(...);
+    ctx.fn.DB.User.search(data).then(...).catch(...);
   },
 }
 ```
