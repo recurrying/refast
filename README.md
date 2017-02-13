@@ -14,7 +14,7 @@ npm install no-flux --save
 - [设计思路](#设计思路)
 - [联接react组件](#联接react组件)
 - [更新组件的state](#更新组件的state)
-- [LogicRender](#LogicRender)
+- [LogicRender](#logicrender)
 - [具体示例](#具体示例)
 
 ## 设计思路
@@ -114,9 +114,11 @@ export default {
 更多内容请看[这里](docs/more-on-logic/)
 
 ## LogicRender
+
 LogicRender 是一个可以嵌套使用的逻辑组件，提供以下功能：
 
 1、执行action
+
 可以给LogicRender指定设置一个action，初始化时执行一次。如果同时设置了的awareOf。awareOf若发生变化，则在获取组件更新时，再次执行action.
 
 ```javascript
