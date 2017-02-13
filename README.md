@@ -55,6 +55,7 @@ class PageDemo extends Component {
 ```
 
 ## 更新组件的state
+
 react组件的state初始化、修改、删除全都都需要通过no-flux的Logic来管理，这是强约定的。no-flux为组件添加了execute方法。通过execute可以调用logic.js中的action，更新组件state。
 ```javascript
 // PageDemo.jsx
@@ -119,7 +120,7 @@ LogicRender 是一个可以嵌套使用的逻辑组件，提供以下功能：
 
 1、执行action
 
-可以给LogicRender指定设置一个action，初始化时执行一次。如果同时设置了的awareOf。awareOf若发生变化，则在获取组件更新时，再次执行action.
+可以给LogicRender指定一个action，初始化时执行一次。如果同时设置了的awareOf。awareOf若发生变化，则在获取组件更新时，再次执行action.
 
 ```javascript
 // 比如根据state的workNo变化
