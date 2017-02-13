@@ -1,6 +1,6 @@
 {
   "name": "no-flux",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "separate state of react components for JavaScript apps",
   "authors": [
     "jinhong.zjh@alibaba-inc.com",
@@ -10,7 +10,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "lint": "eslint src",
-    "build": "babel src -d dist"
+    "build": "npm run clean && npm run lint && babel src -d dist"
   },
   "repository": {
     "type": "git",

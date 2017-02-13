@@ -32,8 +32,8 @@ export default class Component extends React.Component {
   }
 
   bind(...params) {
-    return () => {
-      this.execute.apply(this, params);
+    return (...args) => {
+      this.execute.apply(this, params.concat(args));
     };
   }
 

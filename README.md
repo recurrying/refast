@@ -73,8 +73,8 @@ no-flux提供了this.execute的一个简捷方法，this.bind，它相当于：
 
 ```javascript
 bind(...params) {
-  return () => {
-    this.execute.apply(this, params);
+  return (...args) => {
+    this.execute.apply(this, params.concat(args));
   };
 }
 ```
