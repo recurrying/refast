@@ -1,10 +1,5 @@
-/**
- * LogicRender的功能：在render中根据渲染需要调用logic方法、处理通用UI
- *
- * Created by ex90rts on 12/12/2016.
- */
 import { Component, PropTypes } from 'react';
-import deepequal from 'deepequal';
+import isEqual from 'lodash.isequal';
 
 export default class LogicRender extends Component {
 
@@ -39,7 +34,7 @@ export default class LogicRender extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!deepequal(nextProps.awareOf, this.props.awareOf)) {
+    if (!isEqual(nextProps.awareOf, this.props.awareOf)) {
       this.executeAction();
     }
   }

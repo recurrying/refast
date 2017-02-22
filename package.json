@@ -1,16 +1,17 @@
 {
   "name": "no-flux",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "separate state of react components for JavaScript apps",
   "authors": [
-    "jinhong.zjh@alibaba-inc.com",
-    "wenzhao.fw@alibaba-inc.com"
+    "jinhong.zjh@alibaba-inc.com https://github.com/ex90rts",
+    "wenzhao.fw@alibaba-inc.com https://github.com/fengsx"
   ],
   "main": "dist/index.js",
   "scripts": {
     "clean": "rimraf dist",
     "lint": "eslint src",
-    "build": "npm run clean && npm run lint && babel src -d dist"
+    "build": "npm run clean && npm run lint && webpack -p",
+    "dev": "npm run clean && npm run lint && webpack -w"
   },
   "repository": {
     "type": "git",
@@ -24,16 +25,15 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "deepcopy": "^0.6.3",
-    "deepequal": "0.0.1",
-    "is-plain-object": "^2.0.1",
-    "isarray": "^2.0.1",
-    "object-assign": "^4.1.0"
+    "lodash.assign": "^4.2.0",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.isequal": "^4.5.0",
+    "lodash.isplainobject": "^4.0.6"
   },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.21.0",
+    "babel-core": "^6.23.1",
     "babel-eslint": "^7.0.0",
+    "babel-loader": "^6.3.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-class-properties": "^6.19.0",
     "babel-plugin-transform-export-extensions": "^6.8.0",
@@ -48,6 +48,7 @@
     "eslint-plugin-react": "^6.8.0",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
-    "rimraf": "^2.3.4"
+    "rimraf": "^2.3.4",
+    "webpack": "^1.13.3"
   }
 }

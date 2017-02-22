@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
-import isArray from 'isarray';
-import isPlainObject from 'is-plain-object';
-import deepcopy from 'deepcopy';
-import assign from 'object-assign';
+import isPlainObject from 'lodash.isplainobject';
+import cloneDeep from 'lodash.clonedeep';
+import assign from 'lodash.assign';
 import { context } from './utils';
 
 export default class Component extends React.Component {
@@ -42,11 +41,11 @@ export default class Component extends React.Component {
     let actions = params.shift();
     const ctx = assign({}, context, {
       setState: t.setState.bind(t),
-      getState() { return deepcopy(t.state); },
-      getProps() { return deepcopy(t.props); },
+      getState() { return cloneDeep(t.state); },
+      getProps() { return cloneDeep(t.props); },
     });
 
-    if (!isArray(actions)) {
+    if (!Array.isArray(actions)) {
       actions = [actions];
     }
 
