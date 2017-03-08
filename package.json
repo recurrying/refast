@@ -1,6 +1,6 @@
 {
   "name": "no-flux",
-  "version": "0.2.8",
+  "version": "0.3.1",
   "description": "separate state of react components for JavaScript apps",
   "authors": [
     "jinhong.zjh@alibaba-inc.com https://github.com/ex90rts",
