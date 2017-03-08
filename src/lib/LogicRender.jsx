@@ -4,7 +4,10 @@ import isEqual from 'lodash.isequal';
 export default class LogicRender extends Component {
 
   static propTypes = {
-    action: PropTypes.string,
+    action: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+    ]),
     awareOf: PropTypes.any,
     empty: PropTypes.bool,
     loading: PropTypes.bool,
