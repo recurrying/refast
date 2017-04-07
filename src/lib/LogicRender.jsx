@@ -30,7 +30,7 @@ export default class LogicRender extends Component {
   }
 
   static contextTypes = {
-    host: PropTypes.any,
+    execute: PropTypes.func,
   }
   componentDidMount() {
     this.executeAction();
@@ -43,10 +43,10 @@ export default class LogicRender extends Component {
   }
 
   executeAction() {
-    const host = this.context.host;
+    const { execute } = this.context;
     const { action, awareOf } = this.props;
     if (action) {
-      host.execute(action, awareOf);
+      execute(action, awareOf);
     }
   }
 
@@ -69,11 +69,11 @@ export default class LogicRender extends Component {
       content = null;
     } else if (loading) {
       content = (
-        <Loading className={`${cls} noflux-loading`} {...loadingProps} />
+        <Loading className={`${cls} no-flux-loading`} {...loadingProps} />
       );
     } else if (empty) {
       content = (
-        <Empty className={`${cls} noflux-empty`} {...emptyProps} />
+        <Empty className={`${cls} no-flux-empty`} {...emptyProps} />
       );
     } else {
       content = (
