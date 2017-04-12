@@ -54,6 +54,19 @@ class PageDemo extends Component {
 }
 ```
 
+如果想绑定多个 logic ，可以通过下面的方式：
+
+``` jsx
+class PageDemo extends Component {
+
+  constructor(props) {
+    // 可以绑定一个 logic 数组
+    super(props, [logic1, logic2, ...]);
+  }
+}
+```
+
+
 ## 更新组件的state
 
 react组件的state初始化、修改、删除全都都需要通过no-flux的Logic来管理，这是强约定的。no-flux为组件添加了execute方法。通过execute可以调用logic.js中的action，更新组件state。

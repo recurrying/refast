@@ -1,6 +1,13 @@
 import { setMiddleware, applyMiddleware } from './middleware';
 import { setContext, getContext } from './context';
 
+function makeArray(arr) {
+  if (!!arr) {
+    return Array.isArray(arr) ? arr : [arr];
+  } else {
+    return [];
+  }
+}
 function setup(key, val) {
   if (typeof key === 'string' && key.toUpperCase() === 'MIDDLEWARE') {
     setMiddleware(val);
@@ -12,11 +19,10 @@ function setup(key, val) {
 function execute(...params) {
   const t = this;
   let actions = params.shift();
+  
   const ctx = getContext(t);
 
-  if (!Array.isArray(actions)) {
-    actions = [actions];
-  }
+  actions = makeArray(actions);
 
   (function exec(args) {
     if (actions.length) {
@@ -43,6 +49,7 @@ function execute(...params) {
 
 export default {
   setup,
+  makeArray,
   execute(that) {
     const ctx = getContext(that);
     const exec = execute.bind(that);

@@ -1,28 +1,38 @@
 import React, { PropTypes } from 'react';
-import isPlainObject from 'lodash.isplainobject';
-import { execute } from './utils';
+import assign from 'lodash.assign';
+import { execute, makeArray } from './utils';
 
 export default class Component extends React.Component {
   static childContextTypes = {
     execute: PropTypes.func,
   }
-  constructor(props, logic) {
+  constructor(props, logics) {
     super(props);
-    if (isPlainObject(logic)) {
-      this.logic = logic;
-      this.state = {};
-      if (typeof logic.defaults === 'function') {
-        this.state = logic.defaults(props) || {};
-      }
-    } else {
-      throw Error('related Logic haven\'t given!');
+
+    logics = makeArray(logics);
+
+    try {
+      this.logic = assign.call(null, {}, ...logics, { defaults: undefined });
+    }
+    catch (e) {
+      throw Error('Logic must be a plain object of function collection!');
     }
 
+    this.logic.defaults = props => {
+      return logics.reduce((composed = {}, logic = {}) => {
+        if (logic.defaults && typeof logic.defaults === 'function') {
+          let now = logic.defaults(props);
+          return { ...composed, ...now };
+        }
+        return composed;
+      }, {})
+    };;
+
+    this.state = this.logic.defaults(props);
     this.bind = this.bind.bind(this);
     this.execute = this.execute.bind(this);
   }
 
-  // 将宿主对象传给所有的LogicRender，供其调用logic方法
   getChildContext() {
     return { execute: this.execute };
   }
