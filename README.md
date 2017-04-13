@@ -14,6 +14,7 @@ npm install no-flux --save
 - [设计思路](#设计思路)
 - [联接react组件](#联接react组件)
 - [更新组件的state](#更新组件的state)
+- [中间件](#中间件)
 - [LogicRender](#logicrender)
 - [具体示例](#具体示例)
 
@@ -126,6 +127,10 @@ export default {
 }
 ```
 更多内容请看[这里](docs/more-on-logic/)
+
+## 中间件
+
+支持自定义一个中间件，在组件setState之前，进行数据比对、条件执行、打印日志等特定的操作。中间件的写法和用法请看[这里](docs/middleware//)
 
 ## LogicRender
 

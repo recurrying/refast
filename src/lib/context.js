@@ -1,4 +1,5 @@
 import cloneDeep from 'lodash.clonedeep';
+import { applyMiddleware } from './middleware';
 
 const win = window;
 const userAgent = navigator.userAgent;
@@ -22,16 +23,20 @@ export default {
     }
   },
   getContext: function (that) {
-    return {
+    const ctx = {
       ...context,
       getState() {
         return cloneDeep(that.state);
       },
       getProps() {
         return cloneDeep(that.props);
-      },
+      }
+    }
+    return {
+      ...ctx,
       setState(...args) {
-        that.setState.apply(that, args);
+        const setState = that.setState.bind(that);
+        return  applyMiddleware(ctx)(setState)(...args);
       }
     }
   }

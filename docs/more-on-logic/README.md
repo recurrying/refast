@@ -16,7 +16,6 @@ export default {
 }
 ```
 
-
 2、修改组件的 state
 
 
