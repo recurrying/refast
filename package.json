@@ -1,6 +1,6 @@
 {
-  "name": "no-flux",
-  "version": "0.4.0",
+  "name": "refast",
+  "version": "1.0.0",
   "description": "separate state of react components for JavaScript apps",
   "authors": [
     "jinhong.zjh@alibaba-inc.com https://github.com/ex90rts",
@@ -15,10 +15,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:fengsx/no-flux.git"
+    "url": "git@github.com:fengsx/refast.git"
   },
   "keywords": [
-    "no-flux",
+    "refast",
     "state",
     "flux",
     "react"

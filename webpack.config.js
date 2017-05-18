@@ -5,7 +5,7 @@ module.exports = {
   output: {
     path: 'dist',
     filename: 'index.js',
-    library: 'no-flux',
+    library: 'refast',
     libraryTarget: 'umd',
   },
   module: {

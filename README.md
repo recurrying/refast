@@ -1,12 +1,12 @@
-# no-flux
+# refast
 >通过抽离state的方式进行react component状态管理
 
-[![npm version](https://img.shields.io/npm/v/no-flux.svg?style=flat)](https://www.npmjs.com/package/no-flux) [![download](https://img.shields.io/npm/dm/no-flux.svg?style=flat)](https://www.npmjs.com/package/no-flux) 
+[![npm version](https://img.shields.io/npm/v/refast.svg?style=flat)](https://www.npmjs.com/package/refast) [![download](https://img.shields.io/npm/dm/refast.svg?style=flat)](https://www.npmjs.com/package/refast) 
 
 ## 安装
-no-flux已发布到npm上，可以直接安装
+refast已发布到npm上，可以直接安装
 ```javascript
-npm install no-flux --save
+npm install refast --save
 ```
 
 ## 用法
@@ -20,11 +20,11 @@ npm install no-flux --save
 
 ## 设计思路
 
-与传统的Flux相比，no-flux将Action的概念直接融合到了类似Flux中的Store这一概念的Logic中，其执行的具体逻辑也合并到了Logic的同名函数中。至于Action的触发时机则交给View决定。实际上,no-flux是通过简单抽离state的方式进行页面数据管理的。
+与传统的Flux相比，refast将Action的概念直接融合到了类似Flux中的Store这一概念的Logic中，其执行的具体逻辑也合并到了Logic的同名函数中。至于Action的触发时机则交给View决定。实际上,refast是通过简单抽离state的方式进行页面数据管理的。
 
-![no-flux架构图](https://img.alicdn.com/tfs/TB1WnfOPpXXXXXBapXXXXXXXXXX-563-182.png)
+![refast架构图](https://img.alicdn.com/tfs/TB1WnfOPpXXXXXBapXXXXXXXXXX-563-182.png)
 
-为了提高用户的开发效率，no-flux还将Loading/Empty这些常用的UI状态封装成了LogicRender组件。
+为了提高用户的开发效率，refast还将Loading/Empty这些常用的UI状态封装成了LogicRender组件。
 
 ## 联接react组件
 一般的，我们会把Logic部分放在logic.js中，把View写在相应的react组件中。假定我们的目录结构如下：
@@ -40,8 +40,8 @@ demo  ----------------------- 某一个页面
 那么可以将PageDemo.jsx和logic.js通过下面的方式联接起来:
 
 ```jsx
-// 使用 no-flux 的 Component 替代 react 的 Component
-import { Component } from 'no-flux';
+// 使用 refast 的 Component 替代 react 的 Component
+import { Component } from 'refast';
 
 // 引入 logic.js
 import logic from './logic';
@@ -70,7 +70,7 @@ class PageDemo extends Component {
 
 ## 更新组件的state
 
-react组件的state初始化、修改、删除全都都需要通过no-flux的Logic来管理，这是强约定的。no-flux为组件添加了execute方法。通过execute可以调用logic.js中的action，更新组件state。
+react组件的state初始化、修改、删除全都都需要通过refast的Logic来管理，这是强约定的。refast为组件添加了execute方法。通过execute可以调用logic.js中的action，更新组件state。
 ```javascript
 // PageDemo.jsx
 // 可以通过 execute 给方法传参（也可以不传）
@@ -84,7 +84,7 @@ export default {
   },
 }
 ```
-no-flux提供了this.execute的一个简捷方法，this.bind，它相当于：
+refast提供了this.execute的一个简捷方法，this.bind，它相当于：
 
 ```javascript
 bind(...params) {
@@ -94,15 +94,15 @@ bind(...params) {
 }
 ```
 
-action被execute调用后，no-flux会把它的第一个参数设为ctx。execute时传给action的参数会被依次放在ctx之后。ctx提供了以下几个通用方法：
+action被execute调用后，refast会把它的第一个参数设为ctx。execute时传给action的参数会被依次放在ctx之后。ctx提供了以下几个通用方法：
 - setState 设置组件的 state, 用法与组件的 setState 相同
 - getState 获取组件当前的 state
 - getProps 获取组件当前的 props
 
-用户也可以通过no-flux提供的setup进行扩展。
+用户也可以通过refast提供的setup进行扩展。
 
 ```javascript
-import { setup } from 'no-flux';
+import { setup } from 'refast';
 import { Message } from 'your-custom-message';
 import { Dialog } from 'your-custom-dialog';
 
@@ -156,7 +156,7 @@ const { workNo } = this.state;
 LogicRender将常用的 Empty/Loadig UI状态封装了起来。
 
 ```jsx
-import { LogicRender } from 'no-flux';
+import { LogicRender } from 'refast';
 
 // 如果isLoading为true,就展示oading状态
 // 如果isEmpty为true，则展示empty状态
@@ -170,6 +170,6 @@ import { LogicRender } from 'no-flux';
 
 ## 具体示例
 
-no-flux示例需要[nowa](https://github.com/nowa-webpack/nowa)的支持，请参考[文档](http://nowa-webpack.github.io/docs/an_zhuang.html)安装。
+refast示例需要[nowa](https://github.com/nowa-webpack/nowa)的支持，请参考[文档](http://nowa-webpack.github.io/docs/an_zhuang.html)安装。
 
-具体示例在这里 [https://github.com/fengsx/no-flux-demo](https://github.com/fengsx/no-flux-demo)
+具体示例在这里 [https://github.com/fengsx/refast-demo](https://github.com/fengsx/refast-demo)

@@ -22,7 +22,7 @@ const { workNo } = this.state;
 LogicRender将常用的 Empty/Loadig UI状态封装了起来。
 
 ```jsx
-import { LogicRender } from 'no-flux';
+import { LogicRender } from 'refast';
 
 // 如果isLoading为true,就展示oading状态
 // 如果isEmpty为true，则展示empty状态

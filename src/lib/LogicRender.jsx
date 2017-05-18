@@ -69,11 +69,11 @@ export default class LogicRender extends Component {
       content = null;
     } else if (loading) {
       content = (
-        <Loading className={`${cls} no-flux-loading`} {...loadingProps} />
+        <Loading className={`${cls} refast-loading`} {...loadingProps} />
       );
     } else if (empty) {
       content = (
-        <Empty className={`${cls} no-flux-empty`} {...emptyProps} />
+        <Empty className={`${cls} refast-empty`} {...emptyProps} />
       );
     } else {
       content = (

@@ -2,7 +2,7 @@
 1、初始化组件的 state
 
 ``` javascript
-// no-flux使用 logic.js 中 defaults 方法的返回值初始化组件的 state 
+// refast使用 logic.js 中 defaults 方法的返回值初始化组件的 state 
 export default {
   // defaults 的参数 props 是组件初始化时的 props
   // defaults 函数返回的对象会用来初始化组件的 state
@@ -34,7 +34,7 @@ export default {
 }
 ```
 
-action被execute调用后，no-flux会把它的第一个参数设为ctx。execute时传给action的参数会被依次放在ctx之后。ctx一般包含有以下几个方法：
+action被execute调用后，refast会把它的第一个参数设为ctx。execute时传给action的参数会被依次放在ctx之后。ctx一般包含有以下几个方法：
 - setState 设置组件的 state, 用法与组件的 setState 相同
 - getState 获取组件当前的 state
 - getProps 获取组件当前的 props
@@ -43,7 +43,7 @@ action被execute调用后，no-flux会把它的第一个参数设为ctx。execut
 
 ```javascript
 // PageDemo.jsx
-// no-flux支持多个方法继发执行
+// refast支持多个方法继发执行
 // 上一个方法的执行结果会作为下一个方法的参数
 this.execute(['update', 'search'], data);
 
@@ -70,7 +70,7 @@ export default {
 // logic.js
 export default {
   ...
-  // no-flux 通过 async/await 的方式管理异步请求
+  // refast 通过 async/await 的方式管理异步请求
   await search(ctx, data) {
     // 可以通过 natty-fetch/window.fetch/$.ajax 等各种方式做异步请求的管理
     const state = await DB.User.search(data);
@@ -91,6 +91,7 @@ export default {
     try {
       state = await DB.User.search(data);
     } catch (e) {
+      // 如果 await 的 Promise 抛出的 catch 信息会传过来
       state = { hasError: true };
     }
     ...
@@ -115,7 +116,7 @@ export default {
 ```
 5、this.bind
 
-no-flux提供了this.execute的一个简捷方法，this.bind，它相当于：
+refast提供了this.execute的一个简捷方法，this.bind，它相当于：
 
 ```javascript
 bind(...params) {
@@ -137,10 +138,10 @@ bind(...params) {
 ```
 6、扩展ctx
 
-通过no-flux提供的setup可以很轻松地扩展ctx。
+通过refast提供的setup可以很轻松地扩展ctx。
 
 ```javascript
-import { setup } from 'no-flux';
+import { setup } from 'refast';
 import { Message } from 'your-custom-message';
 import { Dialog } from 'your-custom-dialog';
 import { DB } from 'your-custom-ajax-handler';
