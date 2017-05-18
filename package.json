@@ -1,6 +1,6 @@
 {
   "name": "refast",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "separate state of react components for JavaScript apps",
   "authors": [
     "jinhong.zjh@alibaba-inc.com https://github.com/ex90rts",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:fengsx/refast.git"
+    "url": "git@github.com:recore/refast.git"
   },
   "keywords": [
     "refast",
