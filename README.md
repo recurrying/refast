@@ -172,4 +172,4 @@ import { LogicRender } from 'refast';
 
 refast示例需要[nowa](https://github.com/nowa-webpack/nowa)的支持，请参考[文档](http://nowa-webpack.github.io/docs/an_zhuang.html)安装。
 
-具体示例在这里 [https://github.com/fengsx/refast-demo](https://github.com/fengsx/refast-demo)
+具体示例在这里 [https://github.com/recore/refast-demo](https://github.com/recore/refast-demo)
