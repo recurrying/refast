@@ -65,7 +65,7 @@ export default class Component extends React.Component {
                 exec(data);
               }
             }).catch((error)=>{
-              throw Error(error);
+              throw error;
             })
           } else if (ret !== false) {
             exec(ret);

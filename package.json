@@ -1,6 +1,6 @@
 {
   "name": "refast",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "separate state of react components for JavaScript apps",
   "authors": [
     "jinhong.zjh@alibaba-inc.com https://github.com/ex90rts",
