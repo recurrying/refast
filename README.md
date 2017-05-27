@@ -70,7 +70,7 @@ class PageDemo extends Component {
 
 ## 更新组件的state
 
-react组件的state初始化、修改、删除全都都需要通过refast的Logic来管理，这是强约定的。refast为组件添加了execute方法。通过execute可以调用logic.js中的action，更新组件state。
+react组件的state初始化、修改、删除全都需要通过refast的Logic来管理，这是强约定的。refast为组件添加了execute方法。通过execute可以调用logic.js中的action，更新组件state。
 ```javascript
 // PageDemo.jsx
 // 可以通过 execute 给方法传参（也可以不传）

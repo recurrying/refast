@@ -19,7 +19,7 @@ const { workNo } = this.state;
 
 2、通用UI的封装
 
-LogicRender将常用的 Empty/Loadig UI状态封装了起来。
+LogicRender 将常用的 Empty/Loadig UI状态封装了起来。
 
 ```jsx
 import { LogicRender } from 'refast';
@@ -31,7 +31,7 @@ import { LogicRender } from 'refast';
 </LogicRender> 
 ```
 
- Empty/Loadig 的展示形式，可以通过修改LogicRender.defaultProps来修改：
+ Empty/Loadig 的展示形式，可以通过修改 LogicRender.defaultProps 来修改。在修改的同时，LogicRender 会将自身的 props 传给自定义的UI。
  
 ```javascript
 // 用以展示empty状态的react组件

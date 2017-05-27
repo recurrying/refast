@@ -58,22 +58,26 @@ export default class LogicRender extends Component {
       empty,
       children,
       className,
-      loadingProps,
-      emptyProps,
       Loading,
       Empty,
     } = this.props;
     const cls = className || '';
 
     if (!show) {
-      content = null;
+      content = <div />;
     } else if (loading) {
       content = (
-        <Loading className={`${cls} refast-loading`} {...loadingProps} />
+        <Loading
+          {...this.props}
+          className={`${cls} refast-loading`}
+        />
       );
     } else if (empty) {
       content = (
-        <Empty className={`${cls} refast-empty`} {...emptyProps} />
+        <Empty
+          {...this.props}
+          className={`${cls} refast-empty`}
+        />
       );
     } else {
       content = (
