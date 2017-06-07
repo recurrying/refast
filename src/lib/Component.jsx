@@ -5,7 +5,7 @@ import { getContext } from './context';
 
 export default class Component extends React.Component {
   static childContextTypes = {
-    execute: PropTypes.func,
+    dispatch: PropTypes.func,
   }
   constructor(props, logics) {
     super(props);
@@ -31,20 +31,21 @@ export default class Component extends React.Component {
 
     this.state = this.logic.defaults(props);
     this.bind = this.bind.bind(this);
-    this.execute = this.execute.bind(this);
+    this.dispatch = this.dispatch.bind(this);
+    this.execute = this.dispatch.bind(this);
   }
 
   getChildContext() {
-    return { execute: this.execute };
+    return { dispatch: this.dispatch };
   }
 
   bind(...params) {
     return (...args) => {
-      this.execute.apply(this, params.concat(args));
+      this.dispatch.apply(this, params.concat(args));
     };
   }
 
-  execute(...params) {
+  dispatch(...params) {
     const t = this;
     let actions = params.shift();
 

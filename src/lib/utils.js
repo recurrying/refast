@@ -8,7 +8,7 @@ function makeArray(arr) {
     return [];
   }
 }
-function setup(key, val) {
+function use(key, val) {
   if (typeof key === 'string' && key.toUpperCase() === 'MIDDLEWARE') {
     setMiddleware(val);
   } else {
@@ -17,6 +17,6 @@ function setup(key, val) {
 }
 
 export default {
-  setup,
+  use,
   makeArray,
 };

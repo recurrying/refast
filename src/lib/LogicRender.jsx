@@ -30,23 +30,23 @@ export default class LogicRender extends Component {
   }
 
   static contextTypes = {
-    execute: PropTypes.func,
+    dispatch: PropTypes.func,
   }
   componentDidMount() {
-    this.executeAction();
+    this.dispatchAction();
   }
 
   componentWillReceiveProps(nextProps) {
     if (!isEqual(nextProps.awareOf, this.props.awareOf)) {
-      this.executeAction();
+      this.dispatchAction();
     }
   }
 
-  executeAction() {
-    const { execute } = this.context;
+  dispatchAction() {
+    const { dispatch } = this.context;
     const { action, awareOf } = this.props;
     if (action) {
-      execute(action, awareOf);
+      dispatch(action, awareOf);
     }
   }
 

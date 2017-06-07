@@ -1,8 +1,8 @@
-### 维护组件的state
+### 维护组件的 state
 1、初始化组件的 state
 
 ``` javascript
-// refast使用 logic.js 中 defaults 方法的返回值初始化组件的 state 
+// Refast 使用 logic.js 中 defaults 方法的返回值初始化组件的 state 
 export default {
   // defaults 的参数 props 是组件初始化时的 props
   // defaults 函数返回的对象会用来初始化组件的 state
@@ -17,7 +17,6 @@ export default {
 ```
 
 2、修改组件的 state
-
 
 ```javascript
 // PageDemo.jsx
@@ -34,7 +33,7 @@ export default {
 }
 ```
 
-action被execute调用后，refast会把它的第一个参数设为ctx。execute时传给action的参数会被依次放在ctx之后。ctx一般包含有以下几个方法：
+action被execute调用后，Refast 会把它的第一个参数设为ctx。execute时传给action的参数会被依次放在ctx之后。ctx一般包含有以下几个方法：
 - setState 设置组件的 state, 用法与组件的 setState 相同
 - getState 获取组件当前的 state
 - getProps 获取组件当前的 props
@@ -43,7 +42,7 @@ action被execute调用后，refast会把它的第一个参数设为ctx。execute
 
 ```javascript
 // PageDemo.jsx
-// refast支持多个方法继发执行
+// Refast 支持多个方法继发执行
 // 上一个方法的执行结果会作为下一个方法的参数
 this.execute(['update', 'search'], data);
 
@@ -70,7 +69,7 @@ export default {
 // logic.js
 export default {
   ...
-  // refast 通过 async/await 的方式管理异步请求
+  // Refast 通过 async/await 的方式管理异步请求
   await search(ctx, data) {
     // 可以通过 natty-fetch/window.fetch/$.ajax 等各种方式做异步请求的管理
     const state = await DB.User.search(data);
@@ -116,7 +115,7 @@ export default {
 ```
 5、this.bind
 
-refast提供了this.execute的一个简捷方法，this.bind，它相当于：
+Refast 提供了this.execute的一个简捷方法，this.bind，它相当于：
 
 ```javascript
 bind(...params) {
@@ -138,16 +137,16 @@ bind(...params) {
 ```
 6、扩展ctx
 
-通过refast提供的setup可以很轻松地扩展ctx。
+通过Refast 提供的 use 可以很轻松地扩展ctx。
 
 ```javascript
-import { setup } from 'refast';
+import Refast from 'Refast ';
 import { Message } from 'your-custom-message';
 import { Dialog } from 'your-custom-dialog';
 import { DB } from 'your-custom-ajax-handler';
 
-// 可以通过setup自定义
-setup('fn', {
+// 可以通过 use 自定义
+Refast.use('fn', {
   message: Message,
   dialog: Dialog
 })
