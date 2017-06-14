@@ -1,10 +1,10 @@
 {
   "name": "refast",
-  "version": "1.0.3",
-  "description": "separate state of react components for JavaScript apps",
+  "version": "1.1.0",
+  "description": "Separate state of react components for JavaScript apps",
   "authors": [
-    "jinhong.zjh@alibaba-inc.com https://github.com/ex90rts",
-    "wenzhao.fw@alibaba-inc.com https://github.com/fengsx"
+    "ex90rts https://github.com/ex90rts",
+    "fengsx https://github.com/fengsx"
   ],
   "main": "dist/index.js",
   "scripts": {

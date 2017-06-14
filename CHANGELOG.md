@@ -2,6 +2,7 @@
 - 增加 use 作为 setup 的别名
 - 增加 dispatch 作为 execute 的别名
 - 增加 CHANGELOG.md
+- 删除 docs 目录，文档整体迁移到[这里](https://recore.github.io/refast-docs/)
 
 ## 1.0.4
 - fix issue [#3 LogicRender的自定义组件能否传入参数](https://github.com/recore/refast/issues/3)
