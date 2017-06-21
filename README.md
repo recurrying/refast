@@ -56,7 +56,7 @@ Refast 对 React.Component 进行了一层封装。为其增加了 dispatch 等�
 
 ## 优势
 
-- 概念少，学习成本较低。对开发者水平要求不高
+- 概念少，学习成本较低。
 - 异步操作更加流畅，官方推荐的 [async-await](https://github.com/tc39/proposals/blob/master/finished-proposals.md)，已经在 Chrome v55 和 Firefox 52.0 提供支持
 - LogicRender 集成了通用视图处理逻辑，提升通用场景的开发效率
 - LogicRender 可条件执行 Action，减少部分逻辑处理
