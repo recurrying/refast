@@ -47,34 +47,28 @@ export default class Component extends React.Component {
 
   dispatch(...params) {
     const t = this;
-    let actions = params.shift();
-
     const ctx = getContext(t);
+    let actionNames = makeArray(params.shift());
 
-    actions = makeArray(actions);
-
-    (function exec(args) {
-      if (actions.length) {
-        const action = actions.shift();
-
-        // 如果logic中不存在action就报错退出
-        if (t.logic[action]) {
-          const ret = t.logic[action].apply(null, [ctx, ...params].concat([args]));
-          if (ret && typeof ret.then === 'function') {
-            ret.then((data) => {
-              if (data !== false) {
-                exec(data);
-              }
-            }).catch((error)=>{
-              throw error;
-            })
-          } else if (ret !== false) {
-            exec(ret);
+    return (function exec(args) {
+      return new Promise((resolve, reject) => {
+        if (actionNames.length) {
+          const actionName = actionNames.shift();
+          const action = t.logic[actionName];
+          const actionParams = [ctx, ...params].concat([args]);
+          if (typeof action === 'function') {
+            resolve(action.apply(null, actionParams));
+          } else {
+            reject(Error(`action ${actionName} should be a function.`));
           }
         } else {
-          throw Error(`action ${action} is not defined`);
+          resolve(args);
         }
-      }
+      }).then((data) => {
+        return actionNames.length && data !== false ? exec(data) : data;
+      }).catch((error) => {
+        throw error;
+      });
     }());
   }
 }

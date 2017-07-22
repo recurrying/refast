@@ -1,6 +1,8 @@
 # Refast
 
 _5分钟就能学会的 React 组件状态管理工具_
+<img src="https://user-images.githubusercontent.com/7709602/27905492-afbe494e-6272-11e7-9ca2-7ecea4bd4c0b.jpg" alt="refast logo" height="120" align="right" />
+
 
 [![npm version](https://img.shields.io/npm/v/refast.svg?style=flat)](https://www.npmjs.com/package/refast) [![download](https://img.shields.io/npm/dm/refast.svg?style=flat)](https://www.npmjs.com/package/refast) 
 

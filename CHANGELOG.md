@@ -1,3 +1,6 @@
+## 1.2.0
+- 重新设计了 dispatch 并为其设置一个 Promise 型的返回值
+
 ## 1.1.0
 - 增加 use 作为 setup 的别名
 - 增加 dispatch 作为 execute 的别名

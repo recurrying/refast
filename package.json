@@ -1,7 +1,7 @@
 {
   "name": "refast",
-  "version": "1.1.0",
-  "description": "Separate state of react components for JavaScript apps",
+  "version": "1.2.0",
+  "description": "5分钟就能学会的 React 状态管理工具",
   "authors": [
     "ex90rts https://github.com/ex90rts",
     "fengsx https://github.com/fengsx"
