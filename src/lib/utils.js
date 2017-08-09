@@ -3,22 +3,20 @@ import { setContext } from './context';
 
 function isType(type) {
   return function (obj) {
-    return {}.toString.call(obj) == "[object " + type + "]"
-  }
+    return {}.toString.call(obj) === `[object ${type}]`;
+  };
 }
 
-const isArray = Array.isArray || isType("Array");
-const isString = isType("String");
-const isFunction = isType("Function");
+const isArray = Array.isArray || isType('Array');
+const isString = isType('String');
+const isFunction = isType('Function');
 
 function makeArray(arr) {
   if (arr) {
     return isArray(arr) ? arr : [arr];
-  } else {
-    return [];
   }
+  return [];
 }
-
 
 
 function use(key, val) {

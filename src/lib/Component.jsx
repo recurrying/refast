@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import assign from 'lodash.assign';
 import { makeArray, isFunction } from './utils';
 import { getContext } from './context';
 
@@ -13,21 +12,17 @@ export default class Component extends React.Component {
     logics = makeArray(logics);
 
     try {
-      this.logic = assign.call(null, {}, ...logics, { defaults: undefined });
-    }
-    catch (e) {
-      throw Error('Logic must be a plain object of function collection!');
+      this.logic = { ...logics, defaults: undefined };
+    } catch (e) {
+      throw new Error('Logic must be a plain object of function collection!');
     }
 
-    this.logic.defaults = props => {
-      return logics.reduce((composed = {}, logic = {}) => {
-        if (logic.defaults && isFunction(logic.defaults)) {
-          let now = logic.defaults(props);
-          return { ...composed, ...now };
-        }
-        return composed;
-      }, {})
-    };;
+    this.logic.defaults = logicProps => logics.reduce((composed = {}, logic = {}) => {
+      if (logic.defaults && isFunction(logic.defaults)) {
+        const now = logic.defaults(logicProps);
+        return { ...composed, ...now };
+      }
+    }, {});
 
     this.state = this.logic.defaults(props);
     this.bind = this.bind.bind(this);
@@ -41,14 +36,14 @@ export default class Component extends React.Component {
 
   bind(...params) {
     return (...args) => {
-      this.dispatch.apply(this, params.concat(args));
+      this.dispatch([...params, ...args]);
     };
   }
 
   dispatch(...params) {
     const t = this;
     const ctx = getContext(t);
-    let actionNames = makeArray(params.shift());
+    const actionNames = makeArray(params.shift());
 
     return (function exec(args) {
       return new Promise((resolve, reject) => {
@@ -57,7 +52,7 @@ export default class Component extends React.Component {
           const action = t.logic[actionName];
           const actionParams = [ctx, ...params].concat([args]);
           if (isFunction(action)) {
-            resolve(action.apply(null, actionParams));
+            resolve(action(...actionParams));
           } else {
             reject(Error(`action ${actionName} should be a function.`));
           }
@@ -65,7 +60,8 @@ export default class Component extends React.Component {
           resolve(args);
         }
       }).then((data) => {
-        return actionNames.length && data !== false ? exec(data) : data;
+        const hasActionNameAndData = actionNames.length && data !== false;
+        return hasActionNameAndData ? exec(data) : data;
       }).catch((error) => {
         throw error;
       });
