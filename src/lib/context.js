@@ -16,7 +16,7 @@ let context = {
 
 export default {
   setContext: function (key, val) {
-    if (['setState', 'getState', 'getProps'].indexOf(key) === -1) {
+    if (~['setState', 'getState', 'getProps'].indexOf(key)) {
       context[key] = val;
     } else {
       throw Error(`${key} could not be overridden`);

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import assign from 'lodash.assign';
-import { makeArray } from './utils';
+import { makeArray, isFunction } from './utils';
 import { getContext } from './context';
 
 export default class Component extends React.Component {
@@ -21,7 +21,7 @@ export default class Component extends React.Component {
 
     this.logic.defaults = props => {
       return logics.reduce((composed = {}, logic = {}) => {
-        if (logic.defaults && typeof logic.defaults === 'function') {
+        if (logic.defaults && isFunction(logic.defaults)) {
           let now = logic.defaults(props);
           return { ...composed, ...now };
         }
@@ -56,7 +56,7 @@ export default class Component extends React.Component {
           const actionName = actionNames.shift();
           const action = t.logic[actionName];
           const actionParams = [ctx, ...params].concat([args]);
-          if (typeof action === 'function') {
+          if (isFunction(action)) {
             resolve(action.apply(null, actionParams));
           } else {
             reject(Error(`action ${actionName} should be a function.`));
