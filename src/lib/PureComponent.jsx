@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import assign from 'lodash.assign';
 import Component from './Component.jsx';
 
 let PureComponent;
@@ -11,6 +10,7 @@ if (React.PureComponent) {
     }
   }
 
-  assign(PureComponent.prototype, Component.prototype);
+  PureComponent.prototype = { ...PureComponent.prototype, ...Component.prototype };
 }
+
 export default PureComponent;

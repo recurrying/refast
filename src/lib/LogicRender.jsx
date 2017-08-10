@@ -1,4 +1,5 @@
 import { Component, PropTypes } from 'react';
+
 import isEqual from 'lodash.isequal';
 
 export default class LogicRender extends Component {
@@ -12,6 +13,9 @@ export default class LogicRender extends Component {
     empty: PropTypes.bool,
     loading: PropTypes.bool,
     show: PropTypes.bool,
+    className: PropTypes.string,
+    Loading: PropTypes.element,
+    Empty: PropTypes.element,
     children: PropTypes.oneOfType([
       PropTypes.element,
       PropTypes.array,
