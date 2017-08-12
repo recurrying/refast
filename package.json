@@ -11,7 +11,8 @@
     "clean": "rimraf dist",
     "lint": "eslint src",
     "build": "npm run clean && npm run lint && webpack -p",
-    "dev": "npm run clean && npm run lint && webpack -w"
+    "dev": "npm run clean && npm run lint && webpack -w",
+    "publish": "npm run build && npm publish"
   },
   "repository": {
     "type": "git",
