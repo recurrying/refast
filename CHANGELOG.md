@@ -1,3 +1,8 @@
+## 1.2.2
+- 去除 loadsh.assign 的依赖
+- 更换为 eslint-config-airbnb
+- README.md 更新
+
 ## 1.2.0
 - 重新设计了 dispatch 并为其设置一个 Promise 型的返回值
 

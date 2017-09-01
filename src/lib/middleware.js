@@ -12,5 +12,4 @@ export default {
   setMiddleware(middleware) {
     middlewares = [...middlewares, ...middleware];
   },
-}
-;
+};

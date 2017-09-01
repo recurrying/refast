@@ -12,7 +12,10 @@ export default class Component extends React.Component {
     logics = makeArray(logics);
 
     try {
-      this.logic = { ...logics, defaults: undefined };
+      this.logic = {
+        ...logics.reduce((composed, logic = {}) => ({ ...composed, ...logic }), { }),
+        defaults: undefined,
+      };
     } catch (e) {
       throw new Error('Logic must be a plain object of function collection!');
     }
@@ -22,6 +25,7 @@ export default class Component extends React.Component {
         const now = logic.defaults(logicProps);
         return { ...composed, ...now };
       }
+      return composed;
     }, {});
 
     this.state = this.logic.defaults(props);
