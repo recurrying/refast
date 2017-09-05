@@ -2,9 +2,7 @@ import { setMiddleware } from './middleware';
 import { setContext } from './context';
 
 function isType(type) {
-  return function (obj) {
-    return {}.toString.call(obj) === `[object ${type}]`;
-  };
+  return obj => ({}.toString.call(obj) === `[object ${type}]`);
 }
 
 const isArray = Array.isArray || isType('Array');

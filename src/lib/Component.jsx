@@ -40,7 +40,7 @@ export default class Component extends React.Component {
 
   bind(...params) {
     return (...args) => {
-      this.dispatch([...params, ...args]);
+      this.dispatch(...params, ...args);
     };
   }
 

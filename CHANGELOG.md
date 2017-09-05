@@ -1,4 +1,4 @@
-## 1.2.2
+## 1.2.3
 - 去除 loadsh.assign 的依赖
 - 更换为 eslint-config-airbnb
 - README.md 更新
