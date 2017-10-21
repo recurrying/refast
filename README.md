@@ -11,8 +11,6 @@ _5分钟就能学会的 React 组件状态管理工具_
 ## 主要优势
 - 概念少，学习成本较低。
 - 搭配 [async-await](https://github.com/tc39/proposals/blob/master/finished-proposals.md) 异步操作更加流畅
-- LogicRender 集成了通用视图处理逻辑，提升开发效率
-- LogicRender 可根据条件自动执行脚本，减少逻辑处理
 
 ## 文档示例
 
