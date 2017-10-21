@@ -1,3 +1,5 @@
+## 2.0.0
+- 将 LogicRender 移出主库，单独发包 refast-logic-render
 ## 1.2.3
 - 去除 loadsh.assign 的依赖
 - 更换为 eslint-config-airbnb

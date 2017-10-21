@@ -1,11 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { makeArray, isFunction } from './utils';
 import { getContext } from './context';
 
 export default class Component extends React.Component {
-  static childContextTypes = {
-    dispatch: PropTypes.func,
-  }
+
   constructor(props, logics) {
     super(props);
 
@@ -32,10 +30,6 @@ export default class Component extends React.Component {
     this.bind = this.bind.bind(this);
     this.dispatch = this.dispatch.bind(this);
     this.execute = this.dispatch.bind(this);
-  }
-
-  getChildContext() {
-    return { dispatch: this.dispatch };
   }
 
   bind(...params) {

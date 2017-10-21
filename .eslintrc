@@ -30,6 +30,7 @@
     "react/jsx-filename-extension": "off",
     "react/jsx-no-bind": "off",
     "react/forbid-prop-types": "off",
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }
