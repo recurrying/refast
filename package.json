@@ -39,8 +39,7 @@
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
-    "react": "^0.14.2",
-    "react-dom": "^0.14.2",
+    "react": "^15.6.0",
     "rimraf": "^2.3.4",
     "webpack": "^1.13.3"
   }
