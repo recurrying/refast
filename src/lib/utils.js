@@ -16,7 +16,6 @@ function makeArray(arr) {
   return [];
 }
 
-
 function use(key, val) {
   if (isString(key) && key.toUpperCase() === 'MIDDLEWARE') {
     setMiddleware(val);

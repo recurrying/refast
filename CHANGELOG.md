@@ -1,3 +1,6 @@
+## 2.1.0
+- 移除 Component 中的 context 设置
+- 移除默认的 context.env 配置
 ## 2.0.0
 - 将 LogicRender 移出主库，单独发包 refast-logic-render
 ## 1.2.3

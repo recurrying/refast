@@ -1,17 +1,9 @@
 import cloneDeep from 'lodash.clonedeep';
 import { applyMiddleware } from './middleware';
 
-const win = window;
-const userAgent = navigator.userAgent;
-const isMobile = !!userAgent.match(/mobile/i) || 'orientation' in win;
-const isPC = !isMobile;
-
 const context = {
-  env: {
-    userAgent,
-    isPC,
-    isMobile,
-  },
+  env: {},
+  fn: {},
 };
 
 export default {

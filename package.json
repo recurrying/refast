@@ -1,6 +1,6 @@
 {
   "name": "refast",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "5 分钟就能学会的 React 状态管理工具",
   "authors": [
     "ex90rts https://github.com/ex90rts",
@@ -39,7 +39,7 @@
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
-    "react": "^15.6.0",
+    "react": "^16.0.0",
     "rimraf": "^2.3.4",
     "webpack": "^1.13.3"
   }
