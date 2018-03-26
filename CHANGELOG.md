@@ -1,3 +1,5 @@
+## 2.1.1
+- 修复 isFunction 判断异步函数返回错误的问题
 ## 2.1.0
 - 移除 Component 中的 context 设置
 - 移除默认的 context.env 配置
